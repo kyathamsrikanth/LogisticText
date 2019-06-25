@@ -1,0 +1,21 @@
+{
+    "root": "/home/jovyan/LogisticText",
+    "git": {
+        "remote": "https://github.com/kyathamsrikanth/LogisticText.git",
+        "commit": "cd8bfac0589dc3daf070e7abc4a5770b7ee401ab"
+    },
+    "email": null,
+    "startedAt": "2019-06-14T05:39:56.523723",
+    "host": "jupyter-kyathamsrikanth",
+    "username": "jovyan",
+    "os": "Linux-4.14.119+-x86_64-with-debian-buster-sid",
+    "python": "3.7.3",
+    "cpu_count": 2,
+    "program": "keras_logistic.py",
+    "args": [],
+    "state": "finished",
+    "heartbeatAt": "2019-06-14T05:40:29.330407",
+    "jobType": null,
+    "mode": "run",
+    "exitcode": 0
+}

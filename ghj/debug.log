@@ -1,0 +1,199 @@
+2019-06-14 05:38:12,997 DEBUG   MainThread:91 [wandb_config.py:_load_defaults():81] no defaults not found in config-defaults.yaml
+2019-06-14 05:38:13,003 DEBUG   MainThread:91 [cmd.py:execute():722] Popen(['git', 'cat-file', '--batch-check'], cwd=/home/jovyan/LogisticText, universal_newlines=False, shell=None)
+2019-06-14 05:38:13,011 DEBUG   MainThread:91 [cmd.py:execute():722] Popen(['git', 'rev-parse', '--show-toplevel'], cwd=/home/jovyan/LogisticText, universal_newlines=False, shell=None)
+2019-06-14 05:38:13,084 DEBUG   MainThread:91 [run_manager.py:__init__():460] Initialized sync for mnist-logistic/ihoiwup7
+2019-06-14 05:38:13,087 INFO    MainThread:91 [run_manager.py:wrap_existing_process():1007] wrapping existing process 83
+2019-06-14 05:38:13,088 WARNING MainThread:91 [io_wrap.py:register():104] SIGWINCH handler was not None: <Handlers.SIG_DFL: 0>
+2019-06-14 05:38:13,090 DEBUG   MainThread:91 [connectionpool.py:_new_conn():813] Starting new HTTPS connection (1): pypi.org:443
+2019-06-14 05:38:13,286 DEBUG   MainThread:91 [connectionpool.py:_make_request():393] https://pypi.org:443 "GET /pypi/wandb/json HTTP/1.1" 200 31736
+2019-06-14 05:38:13,304 INFO    MainThread:91 [run_manager.py:init_run():822] system metrics and metadata threads started
+2019-06-14 05:38:13,305 INFO    MainThread:91 [run_manager.py:init_run():856] upserting run before process can begin, waiting at most 10 seconds
+2019-06-14 05:38:13,311 DEBUG   Thread-13 :91 [connectionpool.py:_new_conn():813] Starting new HTTPS connection (1): api.wandb.ai:443
+2019-06-14 05:38:13,386 DEBUG   Thread-13 :91 [connectionpool.py:_make_request():393] https://api.wandb.ai:443 "POST /graphql HTTP/1.1" 403 138
+2019-06-14 05:38:13,388 ERROR   Thread-13 :91 [internal.py:execute():111] 403 response executing GraphQL.
+2019-06-14 05:38:13,388 ERROR   Thread-13 :91 [internal.py:execute():112] {"errors":[{"message":"permission denied","path":["upsertBucket"],"extensions":{"code":"PERMISSION_ERROR"}}],"data":{"upsertBucket":null}}
+2019-06-14 05:38:13,388 ERROR   Thread-13 :91 [run_manager.py:_upsert_run():886] communication error with wandb Permission denied, ask the project owner to grant you access
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 95, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 114, in execute
+    six.reraise(*sys.exc_info())
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 693, in reraise
+    raise value
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 108, in execute
+    return self.client.execute(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 50, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 58, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/transport/requests.py", line 38, in execute
+    request.raise_for_status()
+  File "/opt/conda/lib/python3.7/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 884, in _upsert_run
+    id=storage_id, num_retries=num_retries, api=self._api)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/wandb_run.py", line 306, in save
+    summary_metrics=summary_metrics, job_type=self.job_type, num_retries=num_retries)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 81, in wrapper
+    message, err), sys.exc_info()[2])
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 692, in reraise
+    raise value.with_traceback(tb)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+2019-06-14 05:38:13,403 ERROR   MainThread:91 [run_manager.py:wrap_existing_process():1012] catostrophic launch error
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 95, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 114, in execute
+    six.reraise(*sys.exc_info())
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 693, in reraise
+    raise value
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 108, in execute
+    return self.client.execute(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 50, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 58, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/transport/requests.py", line 38, in execute
+    request.raise_for_status()
+  File "/opt/conda/lib/python3.7/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 884, in _upsert_run
+    id=storage_id, num_retries=num_retries, api=self._api)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/wandb_run.py", line 306, in save
+    summary_metrics=summary_metrics, job_type=self.job_type, num_retries=num_retries)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 81, in wrapper
+    message, err), sys.exc_info()[2])
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 692, in reraise
+    raise value.with_traceback(tb)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 1010, in wrap_existing_process
+    self.init_run()
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 858, in init_run
+    _, self._upsert_run_thread = async_upsert(True, storage_id, env)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 763, in wrapper
+    six.reraise(type(result), result, sys.exc_info()[2])
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 692, in reraise
+    raise value.with_traceback(tb)
+wandb.run_manager.LaunchError: Launch exception: Permission denied, ask the project owner to grant you access, see /home/jovyan/LogisticText/wandb/debug.log for details.  To disable wandb set WANDB_MODE=dryrun
+2019-06-14 05:38:13,403 ERROR   MainThread:91 [ihoiwup7:run_manager.py:wrap_existing_process():1012] catostrophic launch error
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 95, in __call__
+    result = self._call_fn(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 114, in execute
+    six.reraise(*sys.exc_info())
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 693, in reraise
+    raise value
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 108, in execute
+    return self.client.execute(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 50, in execute
+    result = self._get_result(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/client.py", line 58, in _get_result
+    return self.transport.execute(document, *args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/gql/transport/requests.py", line 38, in execute
+    request.raise_for_status()
+  File "/opt/conda/lib/python3.7/site-packages/requests/models.py", line 940, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://api.wandb.ai/graphql
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 884, in _upsert_run
+    id=storage_id, num_retries=num_retries, api=self._api)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/wandb_run.py", line 306, in save
+    summary_metrics=summary_metrics, job_type=self.job_type, num_retries=num_retries)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 81, in wrapper
+    message, err), sys.exc_info()[2])
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 692, in reraise
+    raise value.with_traceback(tb)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/__init__.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/apis/internal.py", line 664, in upsert_run
+    mutation, variable_values=variable_values, **kwargs)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/retry.py", line 102, in __call__
+    if not check_retry_fn(e):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 518, in no_retry_auth
+    raise CommError("Permission denied, ask the project owner to grant you access")
+wandb.apis.CommError: Permission denied, ask the project owner to grant you access
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 1010, in wrap_existing_process
+    self.init_run()
+  File "/opt/conda/lib/python3.7/site-packages/wandb/run_manager.py", line 858, in init_run
+    _, self._upsert_run_thread = async_upsert(True, storage_id, env)
+  File "/opt/conda/lib/python3.7/site-packages/wandb/util.py", line 763, in wrapper
+    six.reraise(type(result), result, sys.exc_info()[2])
+  File "/opt/conda/lib/python3.7/site-packages/six.py", line 692, in reraise
+    raise value.with_traceback(tb)
+wandb.run_manager.LaunchError: Launch exception: Permission denied, ask the project owner to grant you access, see /home/jovyan/LogisticText/wandb/debug.log for details.  To disable wandb set WANDB_MODE=dryrun

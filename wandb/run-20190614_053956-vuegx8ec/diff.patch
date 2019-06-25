@@ -1,0 +1,10 @@
+diff --git a/wandb/settings b/wandb/settings
+deleted file mode 100644
+index 845441b..0000000
+--- a/wandb/settings
++++ /dev/null
+@@ -1,4 +0,0 @@
+-[default]
+-entity: univai-ss2019
+-project: mnist-logistic
+-base_url: https://api.wandb.ai
